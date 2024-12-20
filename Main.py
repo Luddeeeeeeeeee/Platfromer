@@ -1,29 +1,25 @@
-import pygame
-from Player import player
-pygame.init()
-
+import pygame,sys
+from Level import Level
+from settings import *
 class Game():
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((700,800))
+        self.screen = pygame.display.set_mode((WIDTH,HEIGHT))
         self.Clock = pygame.time.Clock()
-        self.Player = pygame.sprite.GroupSingle(player())
+        self.level = Level()
 
 
     def run(self):
-        run = True
-        while run:
+        while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    run = False
+                    pygame.quit()
+                    sys.exit()
 
             self.screen.fill((50,50,255))
-            
-            self.Player.draw(self.screen)
-            self.Player.update()
-
+            self.level.run()
             pygame.display.flip()
-            self.Clock.tick(60)
+            self.Clock.tick(FPS)
 
 
 if __name__ == "__main__":
