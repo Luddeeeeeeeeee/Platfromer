@@ -18,7 +18,7 @@ class Game():
                     run = False
 
             self.screen.fill((50,50,255))
-
+            
             self.Player.draw(self.screen)
             self.Player.update()
 
